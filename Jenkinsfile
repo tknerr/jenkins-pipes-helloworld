@@ -15,8 +15,8 @@ node {
     stage('package') {
       sh "tar -cvzf hello.tar.gz hello.sh"
     }
-    stage('archive') {
-      archiveArtifacts '*.tar.gz'
+    stage('publish') {
+      echo "uploading package..."
     }
   } finally {
     stage('cleanup') {
