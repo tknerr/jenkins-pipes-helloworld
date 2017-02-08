@@ -8,7 +8,7 @@ A minimal and stupid "helloworld" example project for the [Jenkins Pipes](https:
 
 ## How it works
 
-This example will be built on our [jenkins-pipes-infra](https://github.com/tknerr/jenkins-pipes-infra/blob/master/Dockerfile) because in [jenkins-pipes-jobs](https://github.com/tknerr/jenkins-pipes-jobs/blob/master/ci_jobs.groovy) we configured to build all "master" and "feature/*" branches of this repo.
+This example will be built on our [jenkins-pipes-infra](https://github.com/tknerr/jenkins-pipes-infra/blob/master/Dockerfile) because in [jenkins-pipes-jobs](https://github.com/tknerr/jenkins-pipes-jobs/blob/master/ci_jobs.groovy) we configured to build all `master` and `feature/*` branches of this repo.
 
 The `Jenkinsfile` in here describes **HOW** this project is built, in terms of the individual stages that make up the build pipeline and what happens within them:
 
@@ -16,30 +16,29 @@ The `Jenkinsfile` in here describes **HOW** this project is built, in terms of t
 node {
   try {
     stage('checkout') {
-      ...
+      checkout scm
     }
     stage('prepare') {
-      ...
+      sh "git clean -fdx"
     }
     stage('compile') {
-      ...
+      echo "nothing to compile for hello.sh..."
     }
     stage('test') {
-      ...
+      sh "./test_hello.sh"
     }
     stage('package') {
-      ...
+      sh "tar -cvzf hello.tar.gz hello.sh"
     }
     stage('publish') {
-      ...
+      echo "uploading package..."
     }
   } finally {
     stage('cleanup') {
-      ...
+      echo "doing some cleanup..."
     }
   }
 }
-
 ```
 
 The `master` branch build should succeed:
