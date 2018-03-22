@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo ohai $1!
+echo hello $1!
