@@ -3,6 +3,12 @@ node {
     stage('checkout') {
       checkout scm
     }
+    
+     stage('login in intance') {
+      sh """
+      ssh ubuntu@15.206.94.194
+      """
+    }
     stage('prepare') {
       sh "git clean -fdx"
     }
