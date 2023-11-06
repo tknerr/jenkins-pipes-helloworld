@@ -7,7 +7,7 @@ node {
       sh "git clean -fdx"
     }
     stage('compile') {
-      echo "nothing to compile for hello.sh..."
+      echo "test hello.sh..."
     }
     stage('test') {
       sh "./test_hello.sh"
